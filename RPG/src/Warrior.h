@@ -27,10 +27,11 @@ class Warrior : public Human
     void drinkPotionofLife(int potion);
     void changeWeapon(std::string newWeapon, int newDamage);
     void displayStatus();
+    static int instance_nbr ();//Number of warriors
 
-    protected:
-
-    int m_mana;
+    private:
+    int m_mana; //Magic power
+    static int counter; //To count number of warriors
     Weapon* m_weapon;
 };
 
