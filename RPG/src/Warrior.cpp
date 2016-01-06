@@ -6,25 +6,28 @@
  */
 
 
-
-
 #include "Warrior.h"
 
 using namespace std;
 
+int Warrior::counter = 0;
+
 Warrior::Warrior(): m_mana(100), m_weapon(0)
 {
  m_weapon = new Weapon();
+ ++counter;
 }
 
 Warrior::Warrior(string nameWeapon, int WeaponDamage, string name):Human(name),m_mana(100), m_weapon(0)/*,m_weapon(nameWeapon, WeaponDamage)*/
 {
   m_weapon = new Weapon(nameWeapon, WeaponDamage);
+  ++counter;
 }
 
 Warrior::~Warrior()
 {
  delete m_weapon;
+ --counter;
 }
 
 void Warrior::receiveMana(int nbMana)
@@ -81,6 +84,10 @@ void Warrior::changeWeapon(std::string newWeapon, int newDamage)
     m_weapon->display();
 }
 
+int Warrior::instance_nbr()
+{
+	return counter;
+}
 
 void Warrior::displayStatus()
 {
