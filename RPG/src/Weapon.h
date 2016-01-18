@@ -17,7 +17,7 @@ class Weapon
 
     Weapon();
     Weapon(std::string name, int damage);
-    void change(std::string name, int damage);
+    void newWeapon(std::string name, int damage);
     void display();
     int getDamage() const;
 

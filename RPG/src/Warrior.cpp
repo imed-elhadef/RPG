@@ -12,15 +12,15 @@ using namespace std;
 
 int Warrior::counter = 0;
 
-Warrior::Warrior(): m_mana(100), m_weapon(0)
+Warrior::Warrior(): m_power(100),money(0), m_weapon(0)
 {
  m_weapon = new Weapon();
  ++counter;
 }
 
-Warrior::Warrior(string nameWeapon, int WeaponDamage, string name):Human(name),m_mana(100), m_weapon(0)/*,m_weapon(nameWeapon, WeaponDamage)*/
+Warrior::Warrior(string name, int magic_power):Human(name),m_power(magic_power),money(0), m_weapon(0)
 {
-  m_weapon = new Weapon(nameWeapon, WeaponDamage);
+  m_weapon = new Weapon();
   ++counter;
 }
 
@@ -53,6 +53,7 @@ void Warrior::receiveDamage(int nbDamage)
 
 void Warrior::attack(Warrior* target)
 {
+	money+=100;
     target->receiveDamage(m_weapon->getDamage());
     if (!target->m_life)
      cout << "Your are died!! GAME IS OVER :" << target->m_name << endl;
@@ -61,7 +62,8 @@ void Warrior::attack(Warrior* target)
 
 void Warrior::magicattack(Warrior* target)
 {
-    target->receiveMana(m_mana);
+	money+=200;
+    target->receiveMana(m_power);
     if (!target->m_life)
      cout << "Your are died!! GAME IS OVER :" << target->m_name << endl;
 }
@@ -77,11 +79,41 @@ void Warrior::drinkPotionofLife(int potion)
 cout << "Your life is now : " << m_life << endl;
 }
 
-void Warrior::changeWeapon(std::string newWeapon, int newDamage)
+
+void Warrior::changeWeapon(int price)
 {
-    m_weapon->change(newWeapon, newDamage);
-    cout << "You have changed a new weapon!!, your weapon now is:"<< endl;
-    m_weapon->display();
+	if (money<price)
+	cout << "You haven't enough money to change weapon!!"<< endl;
+	else
+		switch (price)
+		{
+		case 100:
+			money-=price;
+			m_weapon->newWeapon("Gun_Fire", 20);
+			cout << "You have changed a new weapon!!, your weapon now is:"<< endl;
+			m_weapon->display();
+			break;
+		case 200:
+			money-=price;
+			m_weapon->newWeapon("Super Gun", 30);
+			cout << "You have changed a new weapon!!, your weapon now is:"<< endl;
+			m_weapon->display();
+			break;
+		case 300:
+			money-=price;
+			m_weapon->newWeapon("Double edged", 40);
+			cout << "You have changed a new weapon!!, your weapon now is:"<< endl;
+			m_weapon->display();
+			break;
+		case 400:
+			money-=price;
+			m_weapon->newWeapon("Raffale", 50);
+			cout << "You have changed a new weapon!!, your weapon now is:"<< endl;
+			m_weapon->display();
+			break;
+		default:
+			cout << "Your price is not correct!!!" << endl;
+		}
 }
 
 int Warrior::instance_nbr()
@@ -92,7 +124,7 @@ int Warrior::instance_nbr()
 void Warrior::displayStatus()
 {
     cout << "Life: " << m_life << endl;
-    cout << "Mana : " << m_mana << endl;
+    cout << "Magic Mower : " << m_power << endl;
     m_weapon->display();
 }
 

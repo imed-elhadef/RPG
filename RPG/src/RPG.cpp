@@ -18,8 +18,8 @@ int main()
    //Creation of Warriors
     Warrior *A(0),*B(0),*C(0);
     A= new Warrior();
-    B= new Warrior("Gun_Fire", 20,"Imed");
-    C= new Warrior("Raffale", 30,"Haroun");
+    B= new Warrior("Imed",200);
+    C= new Warrior("Haroun",300);
 
     // Fight!!
     cout << "Fight!!!" << endl;
@@ -27,9 +27,9 @@ int main()
     B->drinkPotionofLife(20);
     B->attack(C);
     A->magicattack(C);
-    A->changeWeapon("Double edged", 40);
+    A->changeWeapon(100);
     B->attack(A);
-    A->drinkPotionofLife(20);
+    A->drinkPotionofLife(50);
     A->magicattack(C);
 
     //Number of warriors

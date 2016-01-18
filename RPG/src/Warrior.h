@@ -18,19 +18,20 @@ class Warrior : public Human
 {
     public:
     Warrior();
-    Warrior(std::string nameWeapon, int weaponDamage,std::string name);
+    Warrior(std::string name, int magic_power);
     ~Warrior();
     void receiveDamage(int nbDamage);
     void receiveMana(int nbMana);
     void attack(Warrior* target);
     void magicattack(Warrior* target);
     void drinkPotionofLife(int potion);
-    void changeWeapon(std::string newWeapon, int newDamage);
+    void changeWeapon(int price);
     void displayStatus();
     static int instance_nbr ();//Number of warriors
 
     private:
-    int m_mana; //Magic power
+    int m_power; //Magic power
+    int money;
     static int counter; //To count number of warriors
     Weapon* m_weapon;
 };
